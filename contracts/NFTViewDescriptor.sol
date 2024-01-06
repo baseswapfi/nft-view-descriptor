@@ -20,7 +20,7 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
 
     error InvalidTokenId();
 
-    /// @notice Generate tokenURI as a base64 encoding from live on-chain values.
+    /// @notice Generate a NFTDescription from live on-chain values.
     function getPositionDescription(
         address nftPoolAddres,
         uint256 tokenId
