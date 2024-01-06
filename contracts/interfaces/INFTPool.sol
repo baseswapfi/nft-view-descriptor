@@ -8,6 +8,8 @@ interface INFTPool {
 
     function master() external view returns (IMasterChef);
 
+    function isUnlocked() external view returns (bool);
+
     function getPoolInfo()
         external
         view
@@ -36,5 +38,15 @@ interface INFTPool {
             uint256 rewardDebt,
             uint256 boostPoints,
             uint256 totalMultiplier
+        );
+
+    function getMultiplierSettings()
+        external
+        view
+        returns (
+            uint256 maxGlobalMultiplier,
+            uint256 maxLockDuration,
+            uint256 maxLockMultiplier,
+            uint256 maxBoostMultiplier
         );
 }

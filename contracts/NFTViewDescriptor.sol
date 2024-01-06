@@ -13,6 +13,11 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
 
     bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
 
+    struct NFTDescription {
+        // address owner;
+        string image;
+    }
+
     constructor() {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(ADMIN_ROLE, msg.sender);
@@ -32,6 +37,11 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
          * So this contract has the option to be used by other systems/contracts without repetitive concerns/checks
          */
         if (!pool.exists(tokenId)) revert InvalidTokenId();
+
+        uint8 lockTier;
+        uint8 boostTier;
+
+        if (pool.isUnlocked()) lockTier = 0;
 
         uri = "";
     }

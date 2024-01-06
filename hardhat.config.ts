@@ -59,7 +59,7 @@ const config: HardhatUserConfig = {
     hardhat: {
       forking: {
         url: process.env.BASE_RPC || '',
-        blockNumber: 5984940, // 10/31/23 9:30AM EST
+        blockNumber: 8889910, // 1/6/24 2:30PM EST
       },
     },
     arbitrum: {
