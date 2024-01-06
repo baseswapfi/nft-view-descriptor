@@ -7,6 +7,7 @@ import "base64-sol/base64.sol";
 
 import { INFTViewDescriptor, NFTDescription } from "./interfaces/INFTViewDescriptor.sol";
 import { INFTPool } from "./interfaces/INFTPool.sol";
+import { IMasterChef } from "./interfaces/IMasterChef.sol";
 
 contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
     using Strings for uint256;
@@ -23,28 +24,31 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
 
     /// @notice Generate a NFTDescription from live on-chain values.
     function getPositionDescription(
-        address nftPoolAddres,
+        address nftPoolAddress,
         uint256 tokenId
-    ) external view override returns (NFTDescription memory nftDescription) {
-        INFTPool pool = INFTPool(nftPoolAddres);
-
+    ) public view override returns (NFTDescription memory nftDescription) {
         /**
          * TODO: Add any requireed checks.
          * So this contract has the option to be used by other systems/contracts without repetitive concerns/checks
          */
 
-        if (!pool.exists(tokenId)) revert InvalidTokenId();
+        INFTPool pool = INFTPool(nftPoolAddress);
+        IMasterChef chef = pool.master();
 
         // Check for active pool
-        (, uint256 allocPoints, uint256 allocPointsWETH, , , , , ) = pool.master().getPoolInfo(nftPoolAddres);
+        (, uint256 allocPoints, uint256 allocPointsWETH, , , , , ) = chef.getPoolInfo(nftPoolAddress);
+
+        if (!pool.exists(tokenId)) revert InvalidTokenId();
         if (allocPoints == 0 && allocPointsWETH == 0) revert InvalidPool();
 
         uint8 lockTier = 10;
-        // uint8 boostTier = 10;
+        uint8 boostTier = 10;
 
         if (pool.isUnlocked()) lockTier = 0;
+        if (chef.yieldBooster() == address(0)) boostTier = 0;
 
         nftDescription.lockTier = lockTier;
+        nftDescription.boostTier = boostTier;
         nftDescription.owner = pool.ownerOf(tokenId);
     }
 }

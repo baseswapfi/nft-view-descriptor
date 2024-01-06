@@ -2,6 +2,8 @@
 pragma solidity ^0.8.15;
 
 interface IMasterChef {
+    function yieldBooster() external view returns (address);
+
     function getPoolInfo(
         address _poolAddress
     )
