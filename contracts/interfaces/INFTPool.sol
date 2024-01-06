@@ -6,6 +6,8 @@ import { IMasterChef } from "./IMasterChef.sol";
 interface INFTPool {
     function exists(uint256 tokenId) external view returns (bool);
 
+    function ownerOf(uint256 tokenId) external view returns (address);
+
     function master() external view returns (IMasterChef);
 
     function isUnlocked() external view returns (bool);

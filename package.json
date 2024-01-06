@@ -10,7 +10,7 @@
     "base64-sol": "1.0.1"
   },
   "devDependencies": {
-    "@baseswapfi/contracts": "^1.0.2",
+    "@baseswapfi/contracts": "^1.0.3",
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/providers": "^5.7.0",
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",

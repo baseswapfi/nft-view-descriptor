@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@baseswapfi/contracts@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@baseswapfi/contracts/-/contracts-1.0.2.tgz#427ef4a92f32aa4ee40bb229c73adb8d187aa2d7"
-  integrity sha512-QC940X2Z5jokHuaq0gI+nQiY0CYFHtksgnUcW0w+T7CCvvZphsl5GuSg49X3yhSNpzQaFLndkVpREMk+kCeDvw==
+"@baseswapfi/contracts@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@baseswapfi/contracts/-/contracts-1.0.3.tgz#6aa196e11d3449a9235169bec9c6d7f56e7a5819"
+  integrity sha512-/HMX2X549p41dYNCy2JHc2MnHNaJ0iVw62WUkpFPc570p8ADMAJEBtTfQFImLsnItfd16Y2V2tMQPHMTC/YYXA==
   dependencies:
     "@baseswapfi/sdk-core" "^1.0.30"
     "@ethersproject/providers" "^5.7.0"

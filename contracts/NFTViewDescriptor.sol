@@ -39,5 +39,6 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
         if (pool.isUnlocked()) lockTier = 0;
 
         nftDescription.lockTier = lockTier;
+        nftDescription.owner = pool.ownerOf(tokenId);
     }
 }

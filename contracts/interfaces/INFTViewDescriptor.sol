@@ -2,7 +2,7 @@
 pragma solidity ^0.8.15;
 
 struct NFTDescription {
-    // address owner;
+    address owner;
     uint8 lockTier;
     uint8 boostTier;
     string image;
