@@ -5,18 +5,13 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "base64-sol/base64.sol";
 
-import { INFTViewDescriptor } from "./interfaces/INFTViewDescriptor.sol";
+import { INFTViewDescriptor, NFTDescription } from "./interfaces/INFTViewDescriptor.sol";
 import { INFTPool } from "./interfaces/INFTPool.sol";
 
 contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
     using Strings for uint256;
 
     bytes32 public constant ADMIN_ROLE = keccak256("ADMIN_ROLE");
-
-    struct NFTDescription {
-        // address owner;
-        string image;
-    }
 
     constructor() {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
@@ -26,10 +21,10 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
     error InvalidTokenId();
 
     /// @notice Generate tokenURI as a base64 encoding from live on-chain values.
-    function constructTokenURI(
+    function getPositionDescription(
         address nftPoolAddres,
         uint256 tokenId
-    ) external view override returns (string memory uri) {
+    ) external view override returns (NFTDescription memory nftDescription) {
         INFTPool pool = INFTPool(nftPoolAddres);
 
         /**
@@ -38,11 +33,8 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
          */
         if (!pool.exists(tokenId)) revert InvalidTokenId();
 
-        uint8 lockTier;
-        uint8 boostTier;
+        // uint8 boostTier;
 
-        if (pool.isUnlocked()) lockTier = 0;
-
-        uri = "";
+        if (pool.isUnlocked()) nftDescription.lockTier = 0;
     }
 }

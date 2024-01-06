@@ -19,7 +19,7 @@ describe('NFTViewDescriptor', () => {
   describe('constructTokenURI', () => {
     it('reverts for invalid token ID', async () => {
       const { nftDescriptor } = await loadFixture(descriptorFixture);
-      await expect(nftDescriptor.constructTokenURI(BSWAP_ETH_NFT_POOL, 100000000000)).to.be.reverted;
+      await expect(nftDescriptor.getPositionDescription(BSWAP_ETH_NFT_POOL, 100000000000)).to.be.reverted;
     });
   });
 });
