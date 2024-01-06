@@ -16,7 +16,7 @@ describe('NFTViewDescriptor', () => {
     });
   });
 
-  describe('constructTokenURI', () => {
+  describe('getPositionDescription', () => {
     it('reverts for invalid token ID', async () => {
       const { nftDescriptor } = await loadFixture(descriptorFixture);
       await expect(nftDescriptor.getPositionDescription(BSWAP_ETH_NFT_POOL, 100000000000)).to.be.reverted;
