@@ -33,8 +33,11 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
          */
         if (!pool.exists(tokenId)) revert InvalidTokenId();
 
-        // uint8 boostTier;
+        uint8 lockTier = 10;
+        // uint8 boostTier = 10;
 
-        if (pool.isUnlocked()) nftDescription.lockTier = 0;
+        if (pool.isUnlocked()) lockTier = 0;
+
+        nftDescription.lockTier = lockTier;
     }
 }

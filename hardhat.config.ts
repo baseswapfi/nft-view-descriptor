@@ -57,6 +57,7 @@ const config: HardhatUserConfig = {
   },
   networks: {
     hardhat: {
+      chainId: 8453,
       forking: {
         url: process.env.BASE_RPC || '',
         blockNumber: 8889910, // 1/6/24 2:30PM EST
