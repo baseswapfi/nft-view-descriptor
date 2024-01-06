@@ -19,6 +19,7 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
     }
 
     error InvalidTokenId();
+    error InvalidPool();
 
     /// @notice Generate a NFTDescription from live on-chain values.
     function getPositionDescription(
@@ -31,7 +32,12 @@ contract NFTViewDescriptor is AccessControl, INFTViewDescriptor {
          * TODO: Add any requireed checks.
          * So this contract has the option to be used by other systems/contracts without repetitive concerns/checks
          */
+
         if (!pool.exists(tokenId)) revert InvalidTokenId();
+
+        // Check for active pool
+        (, uint256 allocPoints, uint256 allocPointsWETH, , , , , ) = pool.master().getPoolInfo(nftPoolAddres);
+        if (allocPoints == 0 && allocPointsWETH == 0) revert InvalidPool();
 
         uint8 lockTier = 10;
         // uint8 boostTier = 10;
