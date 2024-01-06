@@ -1,5 +1,5 @@
 {
-  "name": "contracts-template",
+  "name": "@baseswapfi/nft-view-descriptor",
   "license": "MIT",
   "scripts": {
     "build": "npx hardhat compile",
